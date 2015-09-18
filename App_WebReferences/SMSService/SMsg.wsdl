@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:intf="http://56.49.33.14/axis/services/SMsg" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://56.49.33.14/axis/services/SMsg" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://56.49.33.14/axis/services/SMsg" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://56.49.33.14/axis/services/SMsg">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="ArrayOf_xsd_string">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="xsd:string[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="checkTimeResponse">
+    <wsdl:part name="checkTimeReturn" type="xsd:boolean" />
+  </wsdl:message>
+  <wsdl:message name="sendSMRequest">
+    <wsdl:part name="apiCode" type="xsd:string" />
+    <wsdl:part name="loginName" type="xsd:string" />
+    <wsdl:part name="loginPwd" type="xsd:string" />
+    <wsdl:part name="mobiles" type="impl:ArrayOf_xsd_string" />
+    <wsdl:part name="content" type="xsd:string" />
+    <wsdl:part name="smID" type="xsd:long" />
+  </wsdl:message>
+  <wsdl:message name="releaseResponse">
+    <wsdl:part name="releaseReturn" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="sendSMResponse">
+    <wsdl:part name="sendSMReturn" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="recvMoRequest">
+    <wsdl:part name="apiCode" type="xsd:string" />
+    <wsdl:part name="loginName" type="xsd:string" />
+    <wsdl:part name="loginPwd" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="sendSMResponse5">
+    <wsdl:part name="sendSMReturn" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="sendSMResponse4">
+    <wsdl:part name="sendSMReturn" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="invokeRequest">
+    <wsdl:part name="shell" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="sendSMResponse3">
+    <wsdl:part name="sendSMReturn" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="sendSMResponse1">
+    <wsdl:part name="sendSMReturn" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="sendSMResponse2">
+    <wsdl:part name="sendSMReturn" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="flushHostResponse">
+    <wsdl:part name="flushHostReturn" type="xsd:boolean" />
+  </wsdl:message>
+  <wsdl:message name="sendPDUResponse">
+    <wsdl:part name="sendPDUReturn" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="invokeResponse">
+    <wsdl:part name="invokeReturn" type="xsd:anyType" />
+  </wsdl:message>
+  <wsdl:message name="recvRPTResponse">
+    <wsdl:part name="recvRPTReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="sendPDURequest">
+    <wsdl:part name="apiCode" type="xsd:string" />
+    <wsdl:part name="loginName" type="xsd:string" />
+    <wsdl:part name="loginPwd" type="xsd:string" />
+    <wsdl:part name="mobiles" type="impl:ArrayOf_xsd_string" />
+    <wsdl:part name="content" type="xsd:base64Binary" />
+    <wsdl:part name="smID" type="xsd:long" />
+    <wsdl:part name="msgFmt" type="xsd:int" />
+    <wsdl:part name="tpPID" type="xsd:int" />
+    <wsdl:part name="tpUdhi" type="xsd:int" />
+    <wsdl:part name="feeTerminalID" type="xsd:string" />
+    <wsdl:part name="feeType" type="xsd:string" />
+    <wsdl:part name="feeCode" type="xsd:string" />
+    <wsdl:part name="feeUserType" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="sendPDUResponse1">
+    <wsdl:part name="sendPDUReturn" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="releaseRequest" />
+  <wsdl:message name="checkTimeRequest">
+    <wsdl:part name="sendTime" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="initRequest">
+    <wsdl:part name="dbIp" type="xsd:string" />
+    <wsdl:part name="dbName" type="xsd:string" />
+    <wsdl:part name="dbPort" type="xsd:string" />
+    <wsdl:part name="user" type="xsd:string" />
+    <wsdl:part name="pwd" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="recvRPTRequest">
+    <wsdl:part name="apiCode" type="xsd:string" />
+    <wsdl:part name="loginName" type="xsd:string" />
+    <wsdl:part name="loginPwd" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="recvMoResponse">
+    <wsdl:part name="recvMoReturn" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="flushHostRequest" />
+  <wsdl:message name="mainRequest">
+    <wsdl:part name="args" type="impl:ArrayOf_xsd_string" />
+  </wsdl:message>
+  <wsdl:message name="sendPDURequest1">
+    <wsdl:part name="apiCode" type="xsd:string" />
+    <wsdl:part name="loginName" type="xsd:string" />
+    <wsdl:part name="loginPwd" type="xsd:string" />
+    <wsdl:part name="mobiles" type="impl:ArrayOf_xsd_string" />
+    <wsdl:part name="content" type="xsd:base64Binary" />
+    <wsdl:part name="smID" type="xsd:long" />
+    <wsdl:part name="srcID" type="xsd:long" />
+    <wsdl:part name="msgFmt" type="xsd:int" />
+    <wsdl:part name="tpPID" type="xsd:int" />
+    <wsdl:part name="tpUdhi" type="xsd:int" />
+    <wsdl:part name="feeTerminalID" type="xsd:string" />
+    <wsdl:part name="feeType" type="xsd:string" />
+    <wsdl:part name="feeCode" type="xsd:string" />
+    <wsdl:part name="feeUserType" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="sendSMRequest1">
+    <wsdl:part name="apiCode" type="xsd:string" />
+    <wsdl:part name="loginName" type="xsd:string" />
+    <wsdl:part name="loginPwd" type="xsd:string" />
+    <wsdl:part name="mobiles" type="impl:ArrayOf_xsd_string" />
+    <wsdl:part name="content" type="xsd:string" />
+    <wsdl:part name="smID" type="xsd:long" />
+    <wsdl:part name="srcID" type="xsd:long" />
+  </wsdl:message>
+  <wsdl:message name="sendSMRequest2">
+    <wsdl:part name="apiCode" type="xsd:string" />
+    <wsdl:part name="loginName" type="xsd:string" />
+    <wsdl:part name="loginPwd" type="xsd:string" />
+    <wsdl:part name="mobiles" type="impl:ArrayOf_xsd_string" />
+    <wsdl:part name="content" type="xsd:string" />
+    <wsdl:part name="smID" type="xsd:long" />
+    <wsdl:part name="url" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="sendSMRequest3">
+    <wsdl:part name="apiCode" type="xsd:string" />
+    <wsdl:part name="loginName" type="xsd:string" />
+    <wsdl:part name="loginPwd" type="xsd:string" />
+    <wsdl:part name="mobiles" type="impl:ArrayOf_xsd_string" />
+    <wsdl:part name="content" type="xsd:string" />
+    <wsdl:part name="smID" type="xsd:long" />
+    <wsdl:part name="srcID" type="xsd:long" />
+    <wsdl:part name="url" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="sendSMRequest4">
+    <wsdl:part name="apiCode" type="xsd:string" />
+    <wsdl:part name="loginName" type="xsd:string" />
+    <wsdl:part name="loginPwd" type="xsd:string" />
+    <wsdl:part name="mobiles" type="impl:ArrayOf_xsd_string" />
+    <wsdl:part name="content" type="xsd:string" />
+    <wsdl:part name="sendTime" type="xsd:string" />
+    <wsdl:part name="smID" type="xsd:long" />
+    <wsdl:part name="srcID" type="xsd:long" />
+  </wsdl:message>
+  <wsdl:message name="initResponse">
+    <wsdl:part name="initReturn" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="sendSMRequest5">
+    <wsdl:part name="apiCode" type="xsd:string" />
+    <wsdl:part name="loginName" type="xsd:string" />
+    <wsdl:part name="loginPwd" type="xsd:string" />
+    <wsdl:part name="mobiles" type="impl:ArrayOf_xsd_string" />
+    <wsdl:part name="content" type="xsd:string" />
+    <wsdl:part name="smID" type="xsd:long" />
+    <wsdl:part name="srcID" type="xsd:long" />
+    <wsdl:part name="url" type="xsd:string" />
+    <wsdl:part name="sendTime" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="mainResponse" />
+  <wsdl:portType name="SMsg">
+    <wsdl:operation name="invoke" parameterOrder="shell">
+      <wsdl:input name="invokeRequest" message="impl:invokeRequest" />
+      <wsdl:output name="invokeResponse" message="impl:invokeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="main" parameterOrder="args">
+      <wsdl:input name="mainRequest" message="impl:mainRequest" />
+      <wsdl:output name="mainResponse" message="impl:mainResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="init" parameterOrder="dbIp dbName dbPort user pwd">
+      <wsdl:input name="initRequest" message="impl:initRequest" />
+      <wsdl:output name="initResponse" message="impl:initResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="release">
+      <wsdl:input name="releaseRequest" message="impl:releaseRequest" />
+      <wsdl:output name="releaseResponse" message="impl:releaseResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="flushHost">
+      <wsdl:input name="flushHostRequest" message="impl:flushHostRequest" />
+      <wsdl:output name="flushHostResponse" message="impl:flushHostResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendSM" parameterOrder="apiCode loginName loginPwd mobiles content smID">
+      <wsdl:input name="sendSMRequest" message="impl:sendSMRequest" />
+      <wsdl:output name="sendSMResponse" message="impl:sendSMResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendSM" parameterOrder="apiCode loginName loginPwd mobiles content smID srcID">
+      <wsdl:input name="sendSMRequest1" message="impl:sendSMRequest1" />
+      <wsdl:output name="sendSMResponse1" message="impl:sendSMResponse1" />
+    </wsdl:operation>
+    <wsdl:operation name="sendSM" parameterOrder="apiCode loginName loginPwd mobiles content smID url">
+      <wsdl:input name="sendSMRequest2" message="impl:sendSMRequest2" />
+      <wsdl:output name="sendSMResponse2" message="impl:sendSMResponse2" />
+    </wsdl:operation>
+    <wsdl:operation name="sendSM" parameterOrder="apiCode loginName loginPwd mobiles content smID srcID url">
+      <wsdl:input name="sendSMRequest3" message="impl:sendSMRequest3" />
+      <wsdl:output name="sendSMResponse3" message="impl:sendSMResponse3" />
+    </wsdl:operation>
+    <wsdl:operation name="sendSM" parameterOrder="apiCode loginName loginPwd mobiles content sendTime smID srcID">
+      <wsdl:input name="sendSMRequest4" message="impl:sendSMRequest4" />
+      <wsdl:output name="sendSMResponse4" message="impl:sendSMResponse4" />
+    </wsdl:operation>
+    <wsdl:operation name="sendSM" parameterOrder="apiCode loginName loginPwd mobiles content smID srcID url sendTime">
+      <wsdl:input name="sendSMRequest5" message="impl:sendSMRequest5" />
+      <wsdl:output name="sendSMResponse5" message="impl:sendSMResponse5" />
+    </wsdl:operation>
+    <wsdl:operation name="recvRPT" parameterOrder="apiCode loginName loginPwd">
+      <wsdl:input name="recvRPTRequest" message="impl:recvRPTRequest" />
+      <wsdl:output name="recvRPTResponse" message="impl:recvRPTResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendPDU" parameterOrder="apiCode loginName loginPwd mobiles content smID msgFmt tpPID tpUdhi feeTerminalID feeType feeCode feeUserType">
+      <wsdl:input name="sendPDURequest" message="impl:sendPDURequest" />
+      <wsdl:output name="sendPDUResponse" message="impl:sendPDUResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendPDU" parameterOrder="apiCode loginName loginPwd mobiles content smID srcID msgFmt tpPID tpUdhi feeTerminalID feeType feeCode feeUserType">
+      <wsdl:input name="sendPDURequest1" message="impl:sendPDURequest1" />
+      <wsdl:output name="sendPDUResponse1" message="impl:sendPDUResponse1" />
+    </wsdl:operation>
+    <wsdl:operation name="recvMo" parameterOrder="apiCode loginName loginPwd">
+      <wsdl:input name="recvMoRequest" message="impl:recvMoRequest" />
+      <wsdl:output name="recvMoResponse" message="impl:recvMoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="checkTime" parameterOrder="sendTime">
+      <wsdl:input name="checkTimeRequest" message="impl:checkTimeRequest" />
+      <wsdl:output name="checkTimeResponse" message="impl:checkTimeResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SMsgSoapBinding" type="impl:SMsg">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="invoke">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="invokeRequest">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="invokeResponse">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="main">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="mainRequest">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="mainResponse">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="init">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="initRequest">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="initResponse">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="release">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="releaseRequest">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="releaseResponse">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="flushHost">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="flushHostRequest">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="flushHostResponse">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendSM">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="sendSMRequest">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="sendSMResponse">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendSM">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="sendSMRequest1">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="sendSMResponse1">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendSM">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="sendSMRequest2">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="sendSMResponse2">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendSM">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="sendSMRequest3">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="sendSMResponse3">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendSM">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="sendSMRequest4">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="sendSMResponse4">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendSM">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="sendSMRequest5">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="sendSMResponse5">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recvRPT">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="recvRPTRequest">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="recvRPTResponse">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendPDU">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="sendPDURequest">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="sendPDUResponse">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendPDU">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="sendPDURequest1">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="sendPDUResponse1">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="recvMo">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="recvMoRequest">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="recvMoResponse">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkTime">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="checkTimeRequest">
+        <wsdlsoap:body use="encoded" namespace="http://webservice.api.im.jasson.com" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="checkTimeResponse">
+        <wsdlsoap:body use="encoded" namespace="http://56.49.33.14/axis/services/SMsg" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SMsgService">
+    <wsdl:port name="SMsg" binding="impl:SMsgSoapBinding">
+      <wsdlsoap:address location="http://56.49.33.14/axis/services/SMsg" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
