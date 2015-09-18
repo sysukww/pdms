@@ -172,6 +172,20 @@ public class Operation
         return data.RunProcReturn("SELECT * FROM pdmsbill where status=@status ORDER BY operatetimeforhis DESC", parms, "pdmsbill");
     }
     /// <summary>
+    /// 按配送单的插入时间进行查询
+    /// </summary>
+    /// <param name="time">查询时间</param>
+    /// <returns>返回查询结果DataSet数据集</returns>
+    public DataSet SelectBill(DateTime time)
+    {
+        DateTime ntime = time.AddDays(1);
+        SqlParameter[] parms ={
+            data.MakeInParam("@time", SqlDbType.DateTime, 0, time ),
+            data.MakeInParam("@ntime", SqlDbType.DateTime, 0, ntime )             
+                              };
+        return data.RunProcReturn("SELECT * FROM pdmsbill where inserttimeforhis between @time and @ntime ORDER BY inserttimeforhis DESC", parms, "pdmsbill");
+    }
+    /// <summary>
     /// 按配送单的状态/查询时间/车牌号进行多条件查询
     /// </summary>
     /// <param name="status">状态（0：待分配（默认），1：已认领，2：成功，3：失败 ）</param>

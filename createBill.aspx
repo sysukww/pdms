@@ -86,9 +86,7 @@
                                 备注：</td>
                             <td style="width:48px;" align="left">
                                 <asp:TextBox ID="txtRemark" runat="server" Height="100px" TextMode="MultiLine" Width="560px"></asp:TextBox></td>
-                            <td style="width: 60px">
-                                <asp:RequiredFieldValidator ID="rfv5" runat="server" ControlToValidate="txtRemark" Font-Size="Small"
-                                    ErrorMessage="* 必填项" ValidationGroup="ValidataGroup1"></asp:RequiredFieldValidator></td>
+                            <td style="width: 60px"></td>
                         </tr>
                     </table>
                 </td>

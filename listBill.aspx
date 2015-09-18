@@ -1,12 +1,44 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master"  AutoEventWireup="true" CodeFile="listBill.aspx.cs" Inherits="listBill" %>
 
+<%@ Register Assembly="DevExpress.Web.v12.1, Version=12.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxNavBar" TagPrefix="dx" %>
+
+<%@ Register assembly="DevExpress.Web.ASPxEditors.v12.1, Version=12.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxEditors" tagprefix="dx" %>
+
+<%@ Register assembly="DevExpress.Web.v12.1, Version=12.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxTabControl" tagprefix="dx" %>
+
+<%@ Register assembly="DevExpress.Web.v12.1, Version=12.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxDocking" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.Web.v12.1, Version=12.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxMenu" tagprefix="dx" %>
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1">
     <div id="contentType2" style="padding:10px;">
     <div style="width:920px; background-color:#fedcbd; padding:5px;">
         <asp:Button ID="btnNew" runat="server" Text="新增" OnClick="BtnNew_Click" />
         <asp:FileUpload ID="FileUpload1" runat="server" BackColor="White"/>
         <asp:Button ID="btnImport" runat="server" Text="导入" OnClick="BtnImport_Click" />
+        <asp:Button ID="btnToday" runat="server" Text="显示今天待分配订单" OnClick="BtnToday_Click" />
     </div>
+
+    <div style="height:5px;"></div>
+
+    <div style="width:910px; background-color:#fedcbd; padding:10px; font-family:Microsoft YaHei; font-size:small;">
+        <table>
+            <tr>
+                <td align="right">插入时间：</td>
+                <td align="left">
+                    <dx:ASPxDateEdit ID="txtStarttime" runat="server" style="float:left; height:24px;"></dx:ASPxDateEdit>
+                    <dx:ASPxLabel ID="txtMiddle" runat="server" Text=" - " style="float:left ; height:30px;"></dx:ASPxLabel>
+                    <dx:ASPxDateEdit ID="txtEndtime" runat="server" style="float:left; height:24px;"></dx:ASPxDateEdit>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="BtnSearch_Click" />
+                </td>
+                <td></td>
+            </tr>
+        </table>
+        <br />     
+    </div>
+
     <div>
         <p style="font-family:Microsoft YaHei; font-size:small;">未分配订单列表</p>
     </div>

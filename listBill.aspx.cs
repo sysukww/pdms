@@ -24,8 +24,12 @@ public partial class listBill : System.Web.UI.Page
     /// </summary>
     private void GridViewBind()
     {
-        GridView1.DataSource = operation.SelectBill(0);      //按照订单的状态进行查询（0为待分配状态）
+        GridView1.DataSource = operation.SelectBill(DateTime.Today);      //按照订单的状态进行查询（0为待分配状态）
         GridView1.DataBind();
+        txtStarttime.Value = DateTime.Today.ToString("yyyy/MM/dd");
+        txtEndtime.Value = DateTime.Today.ToString("yyyy/MM/dd");
+        txtEndtime.Text = txtEndtime.Value.ToString();
+        txtStarttime.Text = txtStarttime.Value.ToString();
         //显示当前页数
         lblPageSum.Text = "当前页为　" + (GridView1.PageIndex + 1) + " / " + GridView1.PageCount + "　页";
     }
@@ -134,7 +138,7 @@ public partial class listBill : System.Web.UI.Page
             //定义变量
             string billno;            //订单号
             string licenseno;         //车牌号
-            string status;            //订单状态
+            //string status;            //订单状态
             string policyafterfee;    //见费出单
             string chargedate;        //收费时间
             string remark;            //备注
@@ -180,7 +184,6 @@ public partial class listBill : System.Web.UI.Page
              * 将通过检测的数据插入数据库
              * （不在上一步骤进行插入数据的原因是防止失败返回时显示列表中有文件中的数据，引起客户误解）
              */
-            int h = 0;
             bool errorflag = false;                         //当同一个文件中存在重复订单号记录时为true
             List<string> errorlist = new List<string>();
             for (int i = 0; i < dr.Length; i++)
@@ -266,4 +269,62 @@ public partial class listBill : System.Web.UI.Page
         }
     }
     #endregion
+
+
+    /**
+     * 根据多条件查询订单号
+     * 1、获取查询数据：车牌号，查询开始日期，查询结束日期以及状态；
+     * 2、根据查询条件选择查询情况；
+     * 3、调用operation进行查询。
+     */
+    protected void BtnSearch_Click(object sender, EventArgs e)
+    {
+        string licenseno="";
+        int status = 0;
+        string starttime = txtStarttime.Text.ToString();
+        string endtime = txtEndtime.Text.ToString();
+
+        int searchtype = 0;                                                   //查询类型
+        DateTime startdt;
+        DateTime enddt;
+        DateTime.TryParse(starttime, out startdt);
+        if (DateTime.TryParse(endtime, out enddt))
+            enddt = enddt.AddDays(1);
+
+
+        /* 选择查询的情况（
+         * 0：licenseno/starttime/endtime are null，
+         * 1：licenseno is not null, starttime and endtime are null,
+         * 2：licenseno and starttime are not null, endtime is null,
+         * 3：licenseno and endtime are not null, starttime is null,
+         * 4：licenseno/starttime/endtime are not null,
+         * 5：starttime is not null, licenseno and endtime are null,
+         * 6：endtime is not null, licenseno and starttime are null,
+         * 7：starttime and endtime are not null, licenseno is null
+         * 。）
+         * 
+         */
+        if (licenseno == "" && starttime == "" && endtime == "") searchtype = 0;
+        else if (licenseno != "" && starttime == "" && endtime == "") searchtype = 1;
+        else if (licenseno != "" && starttime != "" && endtime == "") searchtype = 2;
+        else if (licenseno != "" && starttime == "" && endtime != "") searchtype = 3;
+        else if (licenseno != "" && starttime != "" && endtime != "") searchtype = 4;
+        else if (licenseno == "" && starttime != "" && endtime == "") searchtype = 5;
+        else if (licenseno == "" && starttime == "" && endtime != "") searchtype = 6;
+        else if (licenseno == "" && starttime != "" && endtime != "") searchtype = 7;
+
+
+        GridView1.DataSource = operation.SelectBillbyInserttime(status, licenseno, startdt, enddt, searchtype);                       //显示所有订单
+        GridView1.DataBind();
+        //显示当前页数
+        lblPageSum.Text = "当前页为　" + (GridView1.PageIndex + 1) + " / " + GridView1.PageCount + "　页";
+
+
+    }
+
+    protected void BtnToday_Click(object sender, EventArgs e)
+    {
+        GridViewBind();
+    }
+
 }

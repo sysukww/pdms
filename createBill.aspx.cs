@@ -19,6 +19,7 @@ public partial class createBill : System.Web.UI.Page
         {
             txtPkID.Text = ToolBox.CreatePkID();      //生成主键码
             labStatus.Text = "待分配";
+            txtPolicyafterfee.Text = "第一次";
 
         }
     }

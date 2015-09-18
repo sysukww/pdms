@@ -67,7 +67,8 @@ public partial class sendHurry : System.Web.UI.Page
             operation.InsertLog(ToolBox.CreatePkID(), txtPkID.Text.Trim(), 5, txtOperator.Text.Trim(), opt, opt, opt);
             string[] phone = new string[1];
             phone[0] = txtPhone.Text.Trim();
-            sms.sendSM("isp", "isp", "pIcc4404", phone, txtRemark.Text.ToString(), 0);
+            string sendcontent = "催单：\n车牌号：" + txtLicenseno.Text.ToString() + ",\n订单号：" + txtBillno.Text.ToString() + ",\n备注："+ txtRemark.Text.ToString();
+            sms.sendSM("isp", "isp", "pIcc4404", phone, sendcontent, 0);
 
             HttpContext.Current.Response.Write("<script language='javascript' type='text/javascript'>location.href='" + "manageBill.aspx" + "'</script>");
             HttpContext.Current.Response.End();
