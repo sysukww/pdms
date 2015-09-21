@@ -81,7 +81,48 @@ public partial class manageLog : System.Web.UI.Page
     protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         GridView1.PageIndex = e.NewPageIndex;
-        GridViewBind();
+        //GridViewBind();
+
+        //获取查询数据
+        int status = -1;       //状态
+        string licenseno = "";                       //需要查询的车牌号
+        string starttime = txtStarttime.Text.ToString();
+        string endtime = txtEndtime.Text.ToString();
+
+        int searchtype = 0;                                                   //查询类型
+        DateTime startdt;
+        DateTime enddt;
+        DateTime.TryParse(starttime, out startdt);
+        if (DateTime.TryParse(endtime, out enddt))
+            enddt = enddt.AddDays(1);
+
+
+        /* 选择查询的情况（
+         * 0：licenseno/starttime/endtime are null，
+         * 1：licenseno is not null, starttime and endtime are null,
+         * 2：licenseno and starttime are not null, endtime is null,
+         * 3：licenseno and endtime are not null, starttime is null,
+         * 4：licenseno/starttime/endtime are not null,
+         * 5：starttime is not null, licenseno and endtime are null,
+         * 6：endtime is not null, licenseno and starttime are null,
+         * 7：starttime and endtime are not null, licenseno is null
+         * 。）
+         * 
+         */
+        if (licenseno == "" && starttime == "" && endtime == "") searchtype = 0;
+        else if (licenseno != "" && starttime == "" && endtime == "") searchtype = 1;
+        else if (licenseno != "" && starttime != "" && endtime == "") searchtype = 2;
+        else if (licenseno != "" && starttime == "" && endtime != "") searchtype = 3;
+        else if (licenseno != "" && starttime != "" && endtime != "") searchtype = 4;
+        else if (licenseno == "" && starttime != "" && endtime == "") searchtype = 5;
+        else if (licenseno == "" && starttime == "" && endtime != "") searchtype = 6;
+        else if (licenseno == "" && starttime != "" && endtime != "") searchtype = 7;
+
+
+        GridView1.DataSource = operation.SelectBillbyInserttime(status, licenseno, startdt, enddt, searchtype);                       //显示所有订单
+        GridView1.DataBind();
+        //显示当前页数
+        lblPageSum.Text = "当前页为　" + (GridView1.PageIndex + 1) + " / " + GridView1.PageCount + "　页";
     }
 
     protected void BtnSearch_Click(object sender, EventArgs e)
