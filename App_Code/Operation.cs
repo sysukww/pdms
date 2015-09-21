@@ -175,15 +175,17 @@ public class Operation
     /// 按配送单的插入时间进行查询
     /// </summary>
     /// <param name="time">查询时间</param>
+    /// <param name="status">状态</param>
     /// <returns>返回查询结果DataSet数据集</returns>
-    public DataSet SelectBill(DateTime time)
+    public DataSet SelectBill(DateTime time, int status)
     {
         DateTime ntime = time.AddDays(1);
         SqlParameter[] parms ={
             data.MakeInParam("@time", SqlDbType.DateTime, 0, time ),
-            data.MakeInParam("@ntime", SqlDbType.DateTime, 0, ntime )             
+            data.MakeInParam("@ntime", SqlDbType.DateTime, 0, ntime ),
+            data.MakeInParam("@status", SqlDbType.Int, 0, status )
                               };
-        return data.RunProcReturn("SELECT * FROM pdmsbill where inserttimeforhis between @time and @ntime ORDER BY inserttimeforhis DESC", parms, "pdmsbill");
+        return data.RunProcReturn("SELECT * FROM pdmsbill where inserttimeforhis between @time and @ntime and status=@status ORDER BY inserttimeforhis DESC", parms, "pdmsbill");
     }
     /// <summary>
     /// 按配送单的状态/查询时间/车牌号进行多条件查询

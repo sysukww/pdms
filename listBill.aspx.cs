@@ -24,7 +24,7 @@ public partial class listBill : System.Web.UI.Page
     /// </summary>
     private void GridViewBind()
     {
-        GridView1.DataSource = operation.SelectBill(DateTime.Today);      //按照订单的状态进行查询（0为待分配状态）
+        GridView1.DataSource = operation.SelectBill(DateTime.Today, 0);      //按照订单的状态进行查询（0为待分配状态）
         GridView1.DataBind();
         txtStarttime.Value = DateTime.Today.ToString("yyyy/MM/dd");
         txtEndtime.Value = DateTime.Today.ToString("yyyy/MM/dd");
@@ -192,8 +192,8 @@ public partial class listBill : System.Web.UI.Page
                     licenseno = dr[i]["车牌号"].ToString();
                     //status = dr[i]["订单状态"].ToString();
                     policyafterfee = dr[i]["见费出单"].ToString();
-                    chargedate = dr[i]["收费日期"].ToString();
-                    remark = dr[i]["备注"].ToString();
+                    chargedate = dr[i]["收费时间"].ToString();
+                    //remark = dr[i]["备注"].ToString();
 
                     //检测表中是否已经存在相同订单号
                     DataSet testds = operation.SelectBillbyBillno(billno);     //查询在数据库中是否有过记录
@@ -234,8 +234,8 @@ public partial class listBill : System.Web.UI.Page
                     licenseno = dr[i]["车牌号"].ToString();
                     //status = dr[i]["订单状态"].ToString();
                     policyafterfee = dr[i]["见费出单"].ToString();
-                    chargedate = dr[i]["收费日期"].ToString();
-                    remark = dr[i]["备注"].ToString();
+                    chargedate = dr[i]["收费时间"].ToString();
+                    //remark = dr[i]["备注"].ToString();
                     DateTime.TryParse(chargedate, out dtTemp);
 
                     DateTime opt = DateTime.Now;                        //数据插入时间以及修改时间
@@ -244,7 +244,7 @@ public partial class listBill : System.Web.UI.Page
                     {
                         //逐条插入数据并创建日志
                         string billpk_id = ToolBox.CreatePkID();
-                        operation.InsertBill(billpk_id, billno, licenseno, 0, policyafterfee, dtTemp, "上午", 0, remark, opt, opt, "");      //在订单号里添加数据
+                        operation.InsertBill(billpk_id, billno, licenseno, 0, policyafterfee, dtTemp, "上午", 0, "", opt, opt, "");      //在订单号里添加数据
                         operation.InsertLog(ToolBox.CreatePkID(), billpk_id, 0, "", opt, opt, opt);    //插入日志   
                     }
                     catch
